@@ -29,12 +29,17 @@ const Navbar = () => {
               Home <span class="sr-only">(current)</span>
             </a> */}
           </li>
-          <li class="nav-item">
-            <Link to="/login" class="nav-link">
-              Login
-            </Link>
-          </li>
         </ul>
+        <div class="nav-item">
+          <Link to="/login" class="nav-link" style={{ color: "white" }}>
+            Login
+          </Link>
+        </div>
+        <div class="nav-item">
+          <Link to="/register" class="nav-link" style={{ color: "white" }}>
+            Register
+          </Link>
+        </div>
       </div>
     </nav>
   );
