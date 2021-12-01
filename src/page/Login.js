@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "../style/style.css";
 import Navbar from "../components/Navbar";
 
@@ -6,17 +7,17 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const [show, setShow] = useState(false);
+  const history = useHistory();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setShow(true);
-  };
-
-  const handleClear = () => {
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ username: username, password: password })
+    );
     setUsername("");
     setPassword("");
-    setShow(false);
+    history.push("/");
   };
 
   return (
@@ -51,14 +52,8 @@ const Login = () => {
               />{" "}
               <br />
               <input type="submit" name="" value="Login" />
-              <button onClick={handleClear}>Clear</button>
             </form>
           </div>
-          {show && (
-            <p>
-              {username} : {password}
-            </p>
-          )}
         </div>
       </div>
     </div>
