@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a class="navbar-brand" href="#">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a className="navbar-brand" href="#">
         Manager
       </a>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
@@ -16,27 +16,27 @@ const Navbar = () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <Link to="/" class="nav-link">
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul className="navbar-nav mr-auto">
+          <li className="nav-item active">
+            <Link to="/" className="nav-link">
               Home
             </Link>
-            {/* <a class="nav-link" href="#">
-              Home <span class="sr-only">(current)</span>
+            {/* <a className="nav-link" href="#">
+              Home <span className="sr-only">(current)</span>
             </a> */}
           </li>
         </ul>
-        <div class="nav-item">
-          <Link to="/login" class="nav-link" style={{ color: "white" }}>
+        <div className="nav-item">
+          <Link to="/login" className="nav-link" style={{ color: "white" }}>
             Login
           </Link>
         </div>
-        <div class="nav-item">
-          <Link to="/register" class="nav-link" style={{ color: "white" }}>
+        <div className="nav-item">
+          <Link to="/register" className="nav-link" style={{ color: "white" }}>
             Register
           </Link>
         </div>

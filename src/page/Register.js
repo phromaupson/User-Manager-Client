@@ -18,7 +18,7 @@ const Register = () => {
       axios
         .post("http://localhost:8000/api/user/register", {
           username: username,
-          email: "abc@abc6.com",
+          email: email,
           password: password,
         })
         .then((response) => {
@@ -32,12 +32,12 @@ const Register = () => {
   };
 
   return (
-    <div class="container-fluid">
+    <div className="container-fluid">
       <Navbar />
-      <div class="row ml-5">
-        <div class=" ml-5 col-md-6">
-          <div class="card">
-            <form onsubmit="event.preventDefault()" class="box">
+      <div className="row ml-5">
+        <div className=" ml-5 col-md-6">
+          <div className="card">
+            <form onsubmit="event.preventDefault()" className="box">
               <h1>Register</h1>
               <br />
               <input

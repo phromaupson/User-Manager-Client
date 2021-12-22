@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "../style/style.css";
 import Navbar from "../components/Navbar";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -11,24 +13,50 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ username: username, password: password })
-    );
-    setUsername("");
-    setPassword("");
-    history.push("/");
+    axios
+      .post("http://localhost:8000/api/user/login", {
+        username: username,
+        password: password,
+      })
+      .then((response) => {
+        setUsername("");
+        setPassword("");
+        localStorage.setItem("token", response.data.token);
+
+        toast.success("Login Success", {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        history.push("/");
+      })
+      .catch((error) => {
+        // console.log(error.response.data.msg);
+        toast.error(error.response.data.msg, {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
 
   return (
-    <div class="container-fluid">
+    <div className="container-fluid">
       <Navbar />
-      <div class="row ml-5">
-        <div class=" ml-5 col-md-6">
-          <div class="card">
-            <form onSubmit={handleLogin} class="box">
+      <div className="row ml-5">
+        <div className=" ml-5 col-md-6">
+          <div className="card">
+            <form className="box">
               <h1>Login</h1>
-              <p class="text-muted">
+              <p className="text-muted">
                 {" "}
                 Please enter your login and password!
               </p>{" "}
@@ -46,12 +74,18 @@ const Login = () => {
                 name=""
                 placeholder="Password"
                 value={password}
+                autoComplete="false"
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
               />{" "}
               <br />
-              <input type="submit" name="" value="Login" />
+              <input
+                onClick={handleLogin}
+                type="submit"
+                name=""
+                value="Login"
+              />
             </form>
           </div>
         </div>
