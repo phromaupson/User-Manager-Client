@@ -1,7 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Navbar = () => {
+  const token = localStorage.getItem("token");
+  const history = useHistory();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand" href="#">
@@ -30,16 +33,38 @@ const Navbar = () => {
             </a> */}
           </li>
         </ul>
-        <div className="nav-item">
-          <Link to="/login" className="nav-link" style={{ color: "white" }}>
-            Login
-          </Link>
-        </div>
-        <div className="nav-item">
-          <Link to="/register" className="nav-link" style={{ color: "white" }}>
-            Register
-          </Link>
-        </div>
+        {token ? (
+          <div className="nav-item">
+            <Link
+              to="/login"
+              className="nav-link"
+              style={{ color: "white" }}
+              onClick={() => {
+                localStorage.removeItem("token");
+                history.push("/login");
+              }}
+            >
+              Logout
+            </Link>
+          </div>
+        ) : (
+          <>
+            <div className="nav-item">
+              <Link to="/login" className="nav-link" style={{ color: "white" }}>
+                Login
+              </Link>
+            </div>
+            <div className="nav-item">
+              <Link
+                to="/register"
+                className="nav-link"
+                style={{ color: "white" }}
+              >
+                Register
+              </Link>
+            </div>
+          </>
+        )}
       </div>
     </nav>
   );
